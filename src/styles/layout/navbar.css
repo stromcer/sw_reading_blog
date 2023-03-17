@@ -1,0 +1,28 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+
+ul{
+    list-style: none;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 2px solid black;
+    padding:25px;
+}
+
+
+a{
+    text-decoration: none;
+    color: unset;
+}
+
+a:hover{
+    color:silver;
+}
+
+.active{
+    font-weight: bolder;
+}

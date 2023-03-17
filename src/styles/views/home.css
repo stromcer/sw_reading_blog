@@ -1,0 +1,24 @@
+
+.homeCardContainer{
+    display:flex;
+    flex-direction: row;
+    overflow-y: scroll;
+    margin-inline: 2vw;
+    
+}
+
+.headerCards{
+    display:flex;
+    flex-direction: row;
+    margin-inline:2vw;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+    margin-top:8vh;
+}
+
+.headerCards button{
+    margin-inline: 0.3vw;
+    font-size: 2vw;
+    text-align: center;
+    color:black;
+}
