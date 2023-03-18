@@ -6,17 +6,21 @@ import PlanetCard from "../components/PlanetCard";
 import ControlsContainer from "../components/ControlsContainer";
 import "../styles/views/home.css"
 
-
+    
 
 const Home = () => {
-    const {characters, vehicles, planets, setCharListUrl, setVehicleListUrl, setPlanetListUrl } = useStore()
+  const {store, actions} = useStore();
+  const {characters, vehicles, planets} = store;
+  const {handleCharUrl, handleVehicleUrl, handlePlanetUrl} = actions;
 
 
+
+  
     return(
         <>
           <div className="headerCards">
             { characters 
-            ? <ControlsContainer list={characters} handleChange={setCharListUrl}/>
+            ? <ControlsContainer list={characters} handleChange={handleCharUrl}/>
             : null
             }
             <h1>Personajes</h1>
@@ -29,7 +33,7 @@ const Home = () => {
           </div>
           <div className="headerCards">
             { vehicles 
-            ? <ControlsContainer list={vehicles} handleChange={setVehicleListUrl}/>
+            ? <ControlsContainer list={vehicles} handleChange={handleVehicleUrl}/>
             : null
             }
             <h1>Vehiculos</h1>
@@ -42,7 +46,7 @@ const Home = () => {
           </div>
           <div className="headerCards">
             { planets 
-            ? <ControlsContainer list={planets} handleChange={setPlanetListUrl}/>
+            ? <ControlsContainer list={planets} handleChange={handlePlanetUrl}/>
             : null
             }
             <h1>Planetas</h1>

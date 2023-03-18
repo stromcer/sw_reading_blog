@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import "../styles/layout/navbar.css"
+import FavoritesDropwdown from "../components/FavoritesDropdown";
 
 const NavBar = () => {
 
@@ -10,7 +11,7 @@ const NavBar = () => {
                 <NavLink to="/">Home</NavLink>
             </li>
             <li>
-                <NavLink to="/planetdetails">PlanetDetails</NavLink>
+                <FavoritesDropwdown />
             </li>
         </ul>
     )

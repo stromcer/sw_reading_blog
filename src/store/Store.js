@@ -17,10 +17,11 @@ export const StoreProvider = ({children}) => {
     const [planets, setPlanets] = useState([]);
     const [charListUrl, setCharListUrl] = useState("https://www.swapi.tech/api/people");
     const [vehicleListUrl, setVehicleListUrl] = useState("https://www.swapi.tech/api/vehicles");
-    const [planetListUrl, setPlanetListUrl] = useState("https://www.swapi.tech/api/planets")
-    const [charDetailedList, setCharDetailedList] = useState([])
-    const [vehiclesDetailedList, setVehiclesDetailedList] = useState([])
-    const [planetsDetailedList, setPlanetsDetailedList] = useState([])
+    const [planetListUrl, setPlanetListUrl] = useState("https://www.swapi.tech/api/planets");
+    const [charDetailedList, setCharDetailedList] = useState([]);
+    const [vehiclesDetailedList, setVehiclesDetailedList] = useState([]);
+    const [planetsDetailedList, setPlanetsDetailedList] = useState([]);
+    const [favoritesList, setFavoritesList] = useState([]);
 
 
     useEffect(()=>{
@@ -31,7 +32,7 @@ export const StoreProvider = ({children}) => {
         .then( data =>  setCharDetailedList(data) )
         .catch( err => console.log(err) )        
     }
-    ,[charListUrl, charDetailedList])
+    ,[charListUrl]);
 
 
     useEffect(()=>{
@@ -42,7 +43,7 @@ export const StoreProvider = ({children}) => {
         .then( data => setVehiclesDetailedList(data))
         .catch( err => console.log(err) )
 
-    },[vehicleListUrl])
+    },[vehicleListUrl]);
 
 
     useEffect(()=>{
@@ -53,22 +54,50 @@ export const StoreProvider = ({children}) => {
             .then( data => setPlanetsDetailedList(data))
         .catch( err => console.log(err) )
 
-    },[planetListUrl])
+    },[planetListUrl]);
+
+    const handleCharUrl = (url) => {
+        setCharListUrl(url)
+    };
+
+    const handlePlanetUrl = (url) => {
+        setPlanetListUrl(url)
+    };
+
+    const handleVehicleUrl = (url) => {
+        setVehicleListUrl(url)
+    };
+
+    const handleNewFavorite = ( name, itemID, itemType ) => {
+        setFavoritesList(prev => {
+            const url = `/${itemType}/${itemID}`
+            const newItem = {name, url};
+            let newList = [...prev, newItem]
+            return newList
+        })
+    }
+
+    const handleDelFavorite = (name) => {
+        setFavoritesList(prev => {
+            const newList = prev.filter( item => item.name !== name)
+            return newList
+        })
+    }
 
 
-    const store = {characters ,vehicles ,planets ,charDetailedList, vehiclesDetailedList, planetsDetailedList }
+    const store = {characters ,vehicles ,planets ,charDetailedList, vehiclesDetailedList, planetsDetailedList ,favoritesList }
 
-    const actions = {setCharListUrl, setPlanetListUrl, setVehicleListUrl, setCharDetailedList}
+    const actions = {handleCharUrl, handlePlanetUrl, handleVehicleUrl, handleNewFavorite, handleDelFavorite}
 
 
     return(
-        <Store.Provider value={{store ,actions ,characters, vehicles, planets, setCharListUrl, setPlanetListUrl, setVehicleListUrl}}>
+        <Store.Provider value={{store , actions}}>
             {children}
         </Store.Provider>
-    )
-}
+    )};
 
-const useStore = () => useContext(Store)
+
+const useStore = () => useContext(Store);
 
 
 export default useStore;
