@@ -1,6 +1,9 @@
 import React, {createContext, useContext, useState,useEffect} from 'react';
 
-import { getCharacters ,getVehicles ,getPlanets } from './config';
+import { getFetch, getMultipleFetch } from './externalActions';
+
+
+
 //Creamos el contexto
 const Store = createContext();
 //ZONA TEMPORAL (ESTAS FUNCIONES ME LAS LLEVARE A OTRO ARCHIVO)
@@ -15,33 +18,51 @@ export const StoreProvider = ({children}) => {
     const [charListUrl, setCharListUrl] = useState("https://www.swapi.tech/api/people");
     const [vehicleListUrl, setVehicleListUrl] = useState("https://www.swapi.tech/api/vehicles");
     const [planetListUrl, setPlanetListUrl] = useState("https://www.swapi.tech/api/planets")
+    const [charDetailedList, setCharDetailedList] = useState([])
+    const [vehiclesDetailedList, setVehiclesDetailedList] = useState([])
+    const [planetsDetailedList, setPlanetsDetailedList] = useState([])
+
 
     useEffect(()=>{
-        getCharacters(charListUrl)
-        .then( res => setCharacters(res) )        
+        getFetch(charListUrl)
+        .then( res => {
+            setCharacters(res)
+            return getMultipleFetch(res.results)})
+        .then( data =>  setCharDetailedList(data) )
         .catch( err => console.log(err) )        
     }
-    ,[charListUrl])
+    ,[charListUrl, charDetailedList])
 
 
     useEffect(()=>{
-        getVehicles(vehicleListUrl)
-        .then( res => setVehicles(res) )
+        getFetch(vehicleListUrl)
+        .then( res => {
+            setVehicles(res)
+            return getMultipleFetch(res.results)} )
+        .then( data => setVehiclesDetailedList(data))
         .catch( err => console.log(err) )
 
     },[vehicleListUrl])
 
 
     useEffect(()=>{
-        getPlanets(planetListUrl)
-        .then( res => setPlanets(res) )
+        getFetch(planetListUrl)
+        .then( res => {
+            setPlanets(res)
+            return getMultipleFetch(res.results)} )
+            .then( data => setPlanetsDetailedList(data))
         .catch( err => console.log(err) )
 
     },[planetListUrl])
 
 
+    const store = {characters ,vehicles ,planets ,charDetailedList, vehiclesDetailedList, planetsDetailedList }
+
+    const actions = {setCharListUrl, setPlanetListUrl, setVehicleListUrl, setCharDetailedList}
+
+
     return(
-        <Store.Provider value={{characters, vehicles, planets, setCharListUrl, setPlanetListUrl, setVehicleListUrl}}>
+        <Store.Provider value={{store ,actions ,characters, vehicles, planets, setCharListUrl, setPlanetListUrl, setVehicleListUrl}}>
             {children}
         </Store.Provider>
     )

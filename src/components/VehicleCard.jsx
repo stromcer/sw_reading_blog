@@ -1,21 +1,16 @@
-import React,{useEffect , useState} from "react";
+import React from "react";
 import "../styles/components/card.css"
+import useStore from "../store/Store";
+import { Link } from "react-router-dom";
 
 const VehicleCard = ({name, id, url}) => {
     
     const imgSrc = `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg `
 
-    const [data, setData] = useState([]);
+    const {store} = useStore();
+    const {vehiclesDetailedList} = store;
 
-    useEffect(()=>{
-        fetch(url)
-        .then(res => res.json())
-        .then(res => {
-            setData(res.result.properties)})
-        .catch(err => console.log(err))
-    },[url])
-
-
+    const vehicleData = vehiclesDetailedList ? vehiclesDetailedList.filter(item => item.result.uid === id) : null;
 
 
     return(
@@ -23,16 +18,12 @@ const VehicleCard = ({name, id, url}) => {
         <img src={imgSrc} className="card-img-top" alt="..."/>
         <div className="card-body">
         <h5 className="card-title">{name}</h5>
-        { Boolean(data)
-            ? <>
-                <p className="card-text"><b>Manufacturer</b> : {data.manufacturer}</p>
-                <p className="card-text"><b>Price (credits)</b> : {data.cost_in_credits}</p>
-                <p className="card-text"><b>Passengers</b> : {data.passengers}</p>
-                
-            </>
-            : null
-            }
-        <button className="btn btn-primary">Learn More...</button>
+        
+                 <p className="card-text"><b>Manufacturer</b> : {vehicleData[0] ? vehicleData[0].result.properties.manufacturer : "Loading"}</p>
+                <p className="card-text"><b>Price (credits)</b> : {vehicleData[0] ? vehicleData[0].result.properties.cost_in_credits : "Loading"}</p>
+                <p className="card-text"><b>Passengers</b> : {vehicleData[0] ? vehicleData[0].result.properties.passengers :"Loading"}</p>
+
+        <Link to={`/vehicledetails/${id}`} className="btn btn-primary">Learn More...</Link>
         </div>
     </div>
     )
@@ -40,3 +31,5 @@ const VehicleCard = ({name, id, url}) => {
 
 
 export default VehicleCard;
+
+

@@ -2,8 +2,15 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import Home from '../views/Home.jsx';
-import PlanetDetails from '../views/PlanetDetails.jsx';
 import Layout from '../layout/Layout.jsx';
+import DetailedPlanet from '../views/DetailedPlanet.jsx';
+import DetailedCharacter from '../views/DetailedCharacter.jsx';
+import DetailedVehicle from '../views/DetailedVehicle.jsx';
+
+
+
+
+
 
 
 const innerRoutes = [
@@ -12,8 +19,16 @@ const innerRoutes = [
         element:<Home/>
     },
     { 
-        path:'/planetdetails',
-        element:<PlanetDetails/>
+        path:"/planetdetails/:planet",
+        element: <DetailedPlanet />
+    },
+    {
+        path:"/chardetails/:character",
+        element: <DetailedCharacter />
+    },
+    {
+        path:"/vehicledetails/:vehicle",
+        element: <DetailedVehicle />
     }
 ];
 
