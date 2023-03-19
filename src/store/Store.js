@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useState,useEffect} from 'react';
-
+import CloseButton from 'react-bootstrap/CloseButton';
 import { getFetch, getMultipleFetch } from './externalActions';
 
 
@@ -116,8 +116,7 @@ export const StoreProvider = ({children}) => {
 
     const handleDelFavorite = (name) => {
         setFavoritesList(prev => {
-            const newList = prev.filter( item => item.name !== name)
-            return newList
+            return prev.filter( item => item.name !== name)
         })
     }
 
@@ -135,3 +134,6 @@ const useStore = () => useContext(Store);
 
 
 export default useStore;
+
+
+

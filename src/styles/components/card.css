@@ -10,7 +10,7 @@ img{
     
 }
 
-h5{
+.h5{
     font-size: 1.5vw;
     text-align: center;
 }
@@ -19,6 +19,6 @@ p{
     font-size: 1vw;
 }
 
-.card button{
+.card a,.card button{
     font-size: 0.8vw;
 }

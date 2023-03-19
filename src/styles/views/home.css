@@ -4,16 +4,20 @@
     flex-direction: row;
     overflow-y: scroll;
     margin-inline: 2vw;
-    
+    background-color: rgba(192, 192, 192, 0.473);
+    padding: 20px;
+        
 }
 
 .headerCards{
     display:flex;
+    padding-top: 20px;
+    padding-inline: 20px;
     flex-direction: row;
     margin-inline:2vw;
-    justify-content: space-between;
-    margin-bottom: 1vh;
+    justify-content: space-between; 
     margin-top:8vh;
+    background-color: rgba(192, 192, 192, 0.473);
 }
 
 .headerCards button{

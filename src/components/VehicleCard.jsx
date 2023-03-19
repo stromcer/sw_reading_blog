@@ -2,6 +2,11 @@ import React from "react";
 import "../styles/components/card.css"
 import useStore from "../store/Store";
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
+
+
 
 const VehicleCard = ({name, id, url}) => {
     
@@ -17,19 +22,19 @@ const VehicleCard = ({name, id, url}) => {
 
 
     return(
-    <div className="card" >
-        <img src={imgSrc} className="card-img-top" alt="..."/>
-        <div className="card-body">
-        <h5 className="card-title">{name}</h5>
-            <p className="card-text"><b>Manufacturer</b> : {vehicleData ? vehicleData.result.properties.manufacturer : "Loading"}</p>
-            <p className="card-text"><b>Price (credits)</b> : {vehicleData ? vehicleData.result.properties.cost_in_credits : "Loading"}</p>
-            <p className="card-text"><b>Passengers</b> : {vehicleData ? vehicleData.result.properties.passengers :"Loading"}</p>
+    <Card >
+        <Card.Img src={imgSrc} />
+        <Card.Body>
+            <Card.Title>{name}</Card.Title>
+            <Card.Text><b>Manufacturer</b> : {vehicleData ? vehicleData.result.properties.manufacturer : <Spinner animation="border" variant="danger" />}</Card.Text>
+            <Card.Text><b>Price (credits)</b> : {vehicleData ? vehicleData.result.properties.cost_in_credits : <Spinner animation="border" variant="warning" />}</Card.Text>
+            <Card.Text><b>Passengers</b> : {vehicleData ? vehicleData.result.properties.passengers : <Spinner animation="border" variant="primary" />}</Card.Text>
             <div className="d-flex d-row justify-content-between">
                 <Link to={`/vehicledetails/${id}`} className="btn btn-primary">Learn More...</Link>
-                <button className={favorite ? "btn btn-danger":"btn btn-secondary" }  onClick={() => !favorite ? handleNewFavorite(name,id,"vehicledetails") : handleDelFavorite(name) } >&#10084;</button>
+                <Button variant={favorite ? "danger":"secondary" }  onClick={() => !favorite ? handleNewFavorite(name,id,"vehicledetails") : handleDelFavorite(name) } >&#10084;</Button>
             </div>
-        </div>
-    </div>
+        </Card.Body>
+    </Card>
     )
 }
 

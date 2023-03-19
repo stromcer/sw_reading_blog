@@ -2,11 +2,14 @@ import React from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import useStore from "../store/Store";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
+import CloseButton from 'react-bootstrap/CloseButton';
 
 const FavoritesDropwdown = () => {
 
-  const {store} = useStore();
+  const {store, actions} = useStore();
   const {favoritesList} = store;
+  const {handleDelFavorite} = actions;
   
 
 
@@ -18,8 +21,8 @@ const FavoritesDropwdown = () => {
 
       <Dropdown.Menu>
         {favoritesList.length 
-        ? favoritesList.map( item => <Dropdown.ItemText key={item.name}><Link to={item.url}>  {item.name} </Link></Dropdown.ItemText> )
-        : <Dropdown.Item > Nothing added yet. </Dropdown.Item> }
+        ? favoritesList.map( item => <Dropdown.ItemText key={item.name}><div className="d-flex flex-row justify-content-between"><Link to={item.url}>  {item.name}</Link><CloseButton onClick={()=>handleDelFavorite(item.name)} /></div></Dropdown.ItemText> )
+        : <Dropdown.Item >Nothing added yet.</Dropdown.Item> }
       </Dropdown.Menu>
     </Dropdown>
     )

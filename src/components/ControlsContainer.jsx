@@ -1,4 +1,7 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
+
+
 
 const ControlsContainer = ({list, handleChange}) => {
 
@@ -9,8 +12,8 @@ const ControlsContainer = ({list, handleChange}) => {
         <div>
             { list 
             ? <>
-            <button className="btn btn-success" onClick={() => handleChange(list.previous)}>⮘</button>
-            <button  className="btn btn-success" onClick={() => handleChange(list.next)}>⮚</button>
+            <Button variant="success" onClick={() => handleChange(list.previous)}>⮘</Button >
+            <Button variant="success" onClick={() => handleChange(list.next)}>⮚</Button >
             </>
             :null
             }
