@@ -24,34 +24,71 @@ export const StoreProvider = ({children}) => {
     const [favoritesList, setFavoritesList] = useState([]);
 
 
+    useEffect( ()=>{
+        let tempFavList = localStorage.getItem("favoritesList")
+        if(tempFavList == null) return
+        setFavoritesList(JSON.parse(tempFavList))
+    },[])
+
     useEffect(()=>{
+        localStorage.setItem("favoritesList",JSON.stringify(favoritesList))
+    },[favoritesList])
+
+      useEffect(()=>{
+        let tempCharacterList = localStorage.getItem("characters")
+        if (characters.length === 0 && tempCharacterList != null) {
+            setCharacters(JSON.parse(tempCharacterList))
+            setCharDetailedList(JSON.parse(localStorage.getItem("charDetailedList")))
+            return
+        }
+
         getFetch(charListUrl)
         .then( res => {
+            localStorage.setItem("characters",JSON.stringify(res))
             setCharacters(res)
             return getMultipleFetch(res.results)})
-        .then( data =>  setCharDetailedList(data) )
-        .catch( err => console.log(err) )        
-    }
-    ,[charListUrl]);
+        .then( data =>  {
+            localStorage.setItem("charDetailedList",JSON.stringify(data))
+            return setCharDetailedList(data) })
+        .catch( err => console.log(err) )    
+    },[charListUrl]);
 
 
     useEffect(()=>{
+        let tempVehicleList = localStorage.getItem("vehicles")
+        if (vehicles.length === 0 && tempVehicleList != null) {
+            setVehicles(JSON.parse(tempVehicleList))
+            setVehiclesDetailedList(JSON.parse(localStorage.getItem("vehiclesDetailedList")))
+            return
+        }
         getFetch(vehicleListUrl)
         .then( res => {
+            localStorage.setItem("vehicles",JSON.stringify(res))
             setVehicles(res)
             return getMultipleFetch(res.results)} )
-        .then( data => setVehiclesDetailedList(data))
+        .then( data => {
+            localStorage.setItem("vehiclesDetailedList",JSON.stringify(data))
+            setVehiclesDetailedList(data)})
         .catch( err => console.log(err) )
 
     },[vehicleListUrl]);
 
 
     useEffect(()=>{
+        let tempPlanetlist = localStorage.getItem("planets")
+        if (planets.length === 0 && tempPlanetlist != null) {
+            setPlanets(JSON.parse(tempPlanetlist))
+            setPlanetsDetailedList(JSON.parse(localStorage.getItem("planetsDetailedList")))
+            return
+        }
         getFetch(planetListUrl)
         .then( res => {
+            localStorage.setItem("planets",JSON.stringify(res))
             setPlanets(res)
             return getMultipleFetch(res.results)} )
-            .then( data => setPlanetsDetailedList(data))
+            .then( data => {
+                localStorage.setItem("planetsDetailedList",JSON.stringify(data))
+                setPlanetsDetailedList(data)})
         .catch( err => console.log(err) )
 
     },[planetListUrl]);
@@ -84,11 +121,8 @@ export const StoreProvider = ({children}) => {
         })
     }
 
-
-    const store = {characters ,vehicles ,planets ,charDetailedList, vehiclesDetailedList, planetsDetailedList ,favoritesList }
-
-    const actions = {handleCharUrl, handlePlanetUrl, handleVehicleUrl, handleNewFavorite, handleDelFavorite}
-
+    let store = {characters ,vehicles ,planets ,charDetailedList, vehiclesDetailedList, planetsDetailedList ,favoritesList }
+    let actions = {handleCharUrl, handlePlanetUrl, handleVehicleUrl, handleNewFavorite, handleDelFavorite}
 
     return(
         <Store.Provider value={{store , actions}}>

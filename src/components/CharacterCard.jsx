@@ -25,7 +25,7 @@ const CharacterCard = ({name,id}) => {
 
                 <p className="card-text"><b>Gender</b> : {charData ? charData.result.properties.gender : "Loading"}</p>
                 <p className="card-text"><b>Eye color</b> : {charData ? charData.result.properties.eye_color : "Loading"}</p>
-                <p className="card-text"><b>Hair color</b> : {charData ? charData.result.properties.hair_color :"Loading"}</p>
+                <p className="card-text"><b>Hair color</b> : {charData ? charData.result.properties.hair_color : "Loading"}</p>
 
                 <div className="d-flex d-row justify-content-between">
                     <Link className="btn btn-primary" to={`/chardetails/${id}`} >Learn more..</Link>
