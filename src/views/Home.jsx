@@ -13,7 +13,7 @@ const Home = () => {
   const {characters, vehicles, planets} = store;
   const {handleCharUrl, handleVehicleUrl, handlePlanetUrl} = actions;
 
-
+  
 
   
     return(

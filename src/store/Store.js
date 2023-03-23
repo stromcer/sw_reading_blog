@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState,useEffect} from 'react';
 import CloseButton from 'react-bootstrap/CloseButton';
-import { getFetch, getMultipleFetch } from './externalActions';
+import { getFetch, getMultipleFetch , favSound, unfavSound, changePageSound} from './externalActions';
 
 
 
@@ -94,18 +94,22 @@ export const StoreProvider = ({children}) => {
     },[planetListUrl]);
 
     const handleCharUrl = (url) => {
+        changePageSound.play();
         setCharListUrl(url)
     };
 
     const handlePlanetUrl = (url) => {
+        changePageSound.play();
         setPlanetListUrl(url)
     };
 
     const handleVehicleUrl = (url) => {
+        changePageSound.play();
         setVehicleListUrl(url)
     };
 
     const handleNewFavorite = ( name, itemID, itemType ) => {
+        favSound.play();
         setFavoritesList(prev => {
             const url = `/${itemType}/${itemID}`
             const newItem = {name, url};
@@ -115,6 +119,7 @@ export const StoreProvider = ({children}) => {
     }
 
     const handleDelFavorite = (name) => {
+        unfavSound.play();
         setFavoritesList(prev => {
             return prev.filter( item => item.name !== name)
         })
@@ -130,10 +135,11 @@ export const StoreProvider = ({children}) => {
     )};
 
 
-const useStore = () => useContext(Store);
+function useStore() {
+    return useContext(Store);
+}
 
 
 export default useStore;
-
 
 

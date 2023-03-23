@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useStore from "../store/Store";
-
+import "../styles/views/detaileds.css"
 
 const DetailedCharacter = () => {
 
@@ -15,16 +15,48 @@ const DetailedCharacter = () => {
 
 
     return(
-        <div className="container d-flex flex-row">
+    <>
+        <div className="detailsContainer">
             <img src={imgSrc} alt={`character ${charData?.result.properties.name}`} />
             <div className="d-flex flex-column">
                 <h1>{charData?.result.properties.name}</h1>
-                <p>{charData?.result.description}</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor arcu quis ipsum interdum, ut cursus leo eleifend. Fusce urna nunc, varius at convallis at, viverra vitae orci. Ut efficitur, massa vitae viverra congue, nibh diam suscipit magna, ac aliquet arcu magna sed diam. Pellentesque nec hendrerit risus, nec maximus massa. Quisque quis tortor risus. Nullam scelerisque, diam in convallis volutpat, odio mauris ullamcorper nunc, sed pretium nibh lorem vestibulum purus. Pellentesque aliquet lacus tincidunt erat mollis faucibus. In hendrerit massa suscipit quam euismod auctor. Duis ut risus sed orci hendrerit vulputate. Suspendisse massa odio, placerat sed libero quis, volutpat dictum velit. Nullam in nibh et libero efficitur suscipit quis nec dui. Vivamus eu lectus eget massa imperdiet dapibus. In mattis gravida leo, nec consectetur dui varius vitae.
-                </p>`
+                <h3>{charData?.result.description}</h3>
+
+                <div className="specificDetContainer">
+            <div >
+                <b> Height  </b>
+                <div> {charData?.result.properties.height} </div>
+            </div> 
+            <div >
+                <b> Weight (1g)  </b>
+                <div> {charData?.result.properties.mass} </div>
+            </div> 
+            <div >
+                <b> Hair color  </b>
+                <div> {charData?.result.properties.hair_color} </div>
+            </div> 
+            <div >
+                <b> Skin Color  </b>
+                <div> {charData?.result.properties.skin_color} </div>
+            </div> 
+            <div >
+                <b> Eyes color  </b>
+                <div> {charData?.result.properties.eye_color} </div>
+            </div> 
+            <div >
+                <b> Birth year </b>
+                <div> {charData?.result.properties.birth_year} </div>
+            </div> 
+            <div >
+                <b> Gender  </b>
+                <div> {charData?.result.properties.gender} </div>
+            </div> 
+        </div>
             </div>
         </div>
+
+        
+    </>
     )
 }
 

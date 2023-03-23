@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useStore from "../store/Store";
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 const DetailedVehicle = () => {
     const { vehicle } = useParams()
@@ -12,17 +13,69 @@ const DetailedVehicle = () => {
     const [vehicleData] = vehiclesDetailedList ? vehiclesDetailedList.filter(item => item.result.uid === vehicle) : null;
 
     return(
-        <div className="container d-flex flex-row">
+    <>
+        <div className="detailsContainer">
             <img src={imgSrc} alt={`character ${vehicleData?.result.properties.name}`} />
             <div className="d-flex flex-column">
                 <h1>{vehicleData?.result.properties.name}</h1>
-                <p>{vehicleData?.result.description}</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor arcu quis ipsum interdum, ut cursus leo eleifend. Fusce urna nunc, varius at convallis at, viverra vitae orci. Ut efficitur, massa vitae viverra congue, nibh diam suscipit magna, ac aliquet arcu magna sed diam. Pellentesque nec hendrerit risus, nec maximus massa. Quisque quis tortor risus. Nullam scelerisque, diam in convallis volutpat, odio mauris ullamcorper nunc, sed pretium nibh lorem vestibulum purus. Pellentesque aliquet lacus tincidunt erat mollis faucibus. In hendrerit massa suscipit quam euismod auctor. Duis ut risus sed orci hendrerit vulputate. Suspendisse massa odio, placerat sed libero quis, volutpat dictum velit. Nullam in nibh et libero efficitur suscipit quis nec dui. Vivamus eu lectus eget massa imperdiet dapibus. In mattis gravida leo, nec consectetur dui varius vitae.
-                </p>`
+                <h3>{vehicleData?.result.description}</h3>
+
+                <div className="specificDetContainer">
+                    <div >
+                        <b> Vehicle class  </b>
+                        <div> {vehicleData?.result.properties.vehicle_class} </div>
+                    </div> 
+                    <div >
+                        <b> Manufacturer  </b>
+                        <div> {vehicleData?.result.properties.manufacturer} </div>
+                    </div> 
+                    <div >
+                        <b> Cost (credits)  </b>
+                        <div> {vehicleData?.result.properties.cost_in_credits} </div>
+                    </div> 
+                     
+                    <div >
+                        <b> Crew seats  </b>
+                        <div> {vehicleData?.result.properties.crew} </div>
+                    </div> 
+                    <div >
+                        <b> Passenger seats </b>
+                        <div> {vehicleData?.result.properties.passengers} </div>
+                    </div> 
+
+                    <div >
+                        <b> Cargo capacity  </b>
+                        <div> {vehicleData?.result.properties.cargo_capacity} </div>
+                    </div> 
+
+                </div>
+
+                <div className="graphicsContainer">
+                        <div >
+                        <span>Length (m) </span>
+                            <ProgressBar striped variant="success" now={
+                                vehicleData?.result.properties.length/210*100
+                            } label={`${vehicleData?.result.properties.length}`} />
+                        </div>
+                        <div >
+                        <span>Max speed (ms)</span>
+                        <ProgressBar striped variant="danger" now={
+                                vehicleData?.result.properties.max_atmosphering_speed/1250*100
+                            } label={`${vehicleData?.result.properties.max_atmosphering_speed}`} />
+                        </div> 
+                    </div>
+
+
+
+
             </div>
         </div>
-    )
+
+        
+
+
+
+</>    )
 }
 
 export default DetailedVehicle;

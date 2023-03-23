@@ -2,7 +2,8 @@
 .homeCardContainer{
     display:flex;
     flex-direction: row;
-    overflow-y: scroll;
+    overflow-y: hidden;
+    overflow-x: scroll;
     margin-inline: 2vw;
     background-color: rgba(192, 192, 192, 0.473);
     padding: 20px;
@@ -22,7 +23,19 @@
 
 .headerCards button{
     margin-inline: 0.3vw;
-    font-size: 2vw;
     text-align: center;
-    color:black;
+
 }
+
+img{
+    height: 100%;
+    background-image: url("https://static.wikia.nocookie.net/esstarwars/images/b/b0/Tatooine_TPM.png");
+    background-repeat: no-repeat;
+    background: 100%;
+    background-position: 50%;
+}
+
+.headerCards button path{
+    stroke: #acacac
+}
+

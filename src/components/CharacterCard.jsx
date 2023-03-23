@@ -21,7 +21,7 @@ const CharacterCard = ({name,id}) => {
     const favorite = favoritesList.filter((item) => item.name === name).length ? true : false
 
     return(
-        <Card >
+        <Card bg="dark" text="light" >
         <Card.Img src={imgSrc} />
         <Card.Body>
             <Card.Title>{name}</Card.Title>

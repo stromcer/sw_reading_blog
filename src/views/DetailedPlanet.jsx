@@ -1,6 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useStore from "../store/Store";
+import "../styles/views/detaileds.css"
+import Button from "react-bootstrap/esm/Button";
+import ProgressBar from "react-bootstrap/esm/ProgressBar";
 
 const DetailedPlanet = () =>{
     
@@ -14,17 +17,66 @@ const DetailedPlanet = () =>{
 
 
     return(
-        <div className="container d-flex flex-row">
+    <>   
+        <div className="detailsContainer">
             <img src={imgSrc} alt={`planet ${planetData?.result.properties.name}`} />
             <div className="d-flex flex-column">
                 <h1>{planetData?.result.properties.name}</h1>
-                <p>{planetData?.result.description}</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor arcu quis ipsum interdum, ut cursus leo eleifend. Fusce urna nunc, varius at convallis at, viverra vitae orci. Ut efficitur, massa vitae viverra congue, nibh diam suscipit magna, ac aliquet arcu magna sed diam. Pellentesque nec hendrerit risus, nec maximus massa. Quisque quis tortor risus. Nullam scelerisque, diam in convallis volutpat, odio mauris ullamcorper nunc, sed pretium nibh lorem vestibulum purus. Pellentesque aliquet lacus tincidunt erat mollis faucibus. In hendrerit massa suscipit quam euismod auctor. Duis ut risus sed orci hendrerit vulputate. Suspendisse massa odio, placerat sed libero quis, volutpat dictum velit. Nullam in nibh et libero efficitur suscipit quis nec dui. Vivamus eu lectus eget massa imperdiet dapibus. In mattis gravida leo, nec consectetur dui varius vitae.
-                </p>`
-            </div>
-        </div>
-        )
+                <h3>{planetData?.result.description}</h3>
+                
+                <div className="specificDetContainer">
+                    <div >
+                        <b> Diameter  </b>
+                        <div> {planetData?.result.properties.diameter} </div>
+                    </div> 
+                    <div >
+                        <b> Rotation period  </b>
+                        <div> {planetData?.result.properties.rotation_period} </div>
+                    </div> 
+                    <div >
+                        <b> Orbital period  </b>
+                        <div> {planetData?.result.properties.orbital_period} </div>
+                    </div> 
+                    <div >
+                        <b> Population  </b>
+                        <div> {planetData?.result.properties.population} </div>
+                    </div> 
+                    <div >
+                        <b> Climate  </b>
+                        <div> {planetData?.result.properties.climate} </div>
+                    </div> 
+                    <div >
+                        <b> Terrain  </b>
+                        <div> {planetData?.result.properties.terrain} </div>
+                    </div> 
+                    <div >
+                        <b> Water on surface  </b>
+                        <div> {planetData?.result.properties.surface_water == 1 ? <Button variant="success">✓</Button> : <Button variant="danger">𐄂</Button> } </div>
+                    </div> 
+                </div>
+
+                <div className="graphicsContainer">
+                        <div >
+
+                        <span>Diameter</span>
+                            <ProgressBar striped variant="success" now={
+                                planetData?.result.properties.diameter/118000*100
+                            } label={`${planetData?.result.properties.diameter}`} />
+                        </div>
+                        <div >
+                        <span>Population</span>
+                        <ProgressBar striped variant="danger" now={
+                                planetData?.result.properties.population/2000000000*100
+                            } label={`${planetData?.result.properties.population}`} />
+                        </div> 
+                    </div>
+
+
+
+
+             </div>
+         </div>
+    </>        )
 
 }
 

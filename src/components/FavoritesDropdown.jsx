@@ -2,8 +2,9 @@ import React from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import useStore from "../store/Store";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/esm/Button";
-import CloseButton from 'react-bootstrap/CloseButton';
+import Trash from "react-useanimations/lib/trash2";
+import UseAnimations from "react-useanimations";
+
 
 const FavoritesDropwdown = () => {
 
@@ -15,13 +16,13 @@ const FavoritesDropwdown = () => {
 
     return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic">
         Favorites {favoritesList.length ? favoritesList.length :null }
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu variant="dark">
         {favoritesList.length 
-        ? favoritesList.map( item => <Dropdown.ItemText key={item.name}><div className="d-flex flex-row justify-content-between"><Link to={item.url}>  {item.name}</Link><CloseButton onClick={()=>handleDelFavorite(item.name)} /></div></Dropdown.ItemText> )
+        ? favoritesList.map( item => <Dropdown.ItemText key={item.name}><div className="d-flex flex-row justify-content-between"><Link to={item.url}>  {item.name}</Link><UseAnimations animation={Trash}  onClick={()=>handleDelFavorite(item.name)} /></div></Dropdown.ItemText> )
         : <Dropdown.Item >Nothing added yet.</Dropdown.Item> }
       </Dropdown.Menu>
     </Dropdown>

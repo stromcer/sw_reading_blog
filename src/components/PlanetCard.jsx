@@ -20,7 +20,7 @@ const PlanetCard = ({name ,id }) => {
 
     return(
 
-    <Card >
+    <Card bg="dark" text="light">
         <Card.Img src={imgSrc} />
          <Card.Body>
          <Card.Title>{name}</Card.Title>

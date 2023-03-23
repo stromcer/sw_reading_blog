@@ -22,11 +22,11 @@ const VehicleCard = ({name, id, url}) => {
 
 
     return(
-    <Card >
+    <Card bg="dark" text="light" >
         <Card.Img src={imgSrc} />
         <Card.Body>
             <Card.Title>{name}</Card.Title>
-            <Card.Text><b>Manufacturer</b> : {vehicleData ? vehicleData.result.properties.manufacturer : <Spinner animation="border" variant="danger" />}</Card.Text>
+            <Card.Text><b>Vehicle Class:</b> : {vehicleData ? vehicleData.result.properties.vehicle_class : <Spinner animation="border" variant="danger" />}</Card.Text>
             <Card.Text><b>Price (credits)</b> : {vehicleData ? vehicleData.result.properties.cost_in_credits : <Spinner animation="border" variant="warning" />}</Card.Text>
             <Card.Text><b>Passengers</b> : {vehicleData ? vehicleData.result.properties.passengers : <Spinner animation="border" variant="primary" />}</Card.Text>
             <div className="d-flex d-row justify-content-between">

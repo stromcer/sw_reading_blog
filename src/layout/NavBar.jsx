@@ -2,9 +2,7 @@ import React from "react";
 import { Link, NavLink } from 'react-router-dom';
 import "../styles/layout/navbar.css"
 import FavoritesDropwdown from "../components/FavoritesDropdown";
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 
 
@@ -12,7 +10,7 @@ import Container from 'react-bootstrap/Container';
 const NavBar = () => {
 
     return (
-        <Navbar bg="light" >
+        <Navbar bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand><Link to="/"> STAR WARS PHOTO PLACEHOLDER </Link></Navbar.Brand>
                 <Navbar.Collapse className="justify-content-end">
