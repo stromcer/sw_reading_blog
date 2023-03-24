@@ -60,15 +60,15 @@ const DetailedPlanet = () =>{
 
                         <span>Diameter</span>
                             <ProgressBar striped variant="success" now={
-                                planetData?.result.properties.diameter/118000*100
+                                (planetData?.result.properties.diameter/118000)*100
                             } label={`${planetData?.result.properties.diameter}`} />
                         </div>
                         <div >
-                        <span>Population</span>
-                        <ProgressBar striped variant="danger" now={
-                                planetData?.result.properties.population/2000000000*100
-                            } label={`${planetData?.result.properties.population}`} />
-                        </div> 
+                            <span>Population</span>
+                            <ProgressBar striped variant="danger" now={
+                                    (planetData?.result.properties.population/1000000000)*100
+                                } label={`${planetData?.result.properties.population}`} />
+                        </div>
                     </div>
 
 

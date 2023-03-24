@@ -12,7 +12,7 @@ const NavBar = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand><Link to="/"> STAR WARS PHOTO PLACEHOLDER </Link></Navbar.Brand>
+                <Navbar.Brand><Link to="/"><img src={"/media/logo.png"}/></Link></Navbar.Brand>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text className="mx-5">
                         <NavLink to="/">Home</NavLink>  

@@ -23,7 +23,7 @@ const Home = () => {
             ? <ControlsContainer list={characters} handleChange={handleCharUrl}/>
             : null
             }
-            <h1>Personajes</h1>
+            <h1>Characters</h1>
           </div>
           <div className="homeCardContainer">
             { Boolean(characters?.results)
@@ -36,7 +36,7 @@ const Home = () => {
             ? <ControlsContainer list={vehicles} handleChange={handleVehicleUrl}/>
             : null
             }
-            <h1>Vehiculos</h1>
+            <h1>Vehicles</h1>
           </div>
           <div className="homeCardContainer">
             {  Boolean(vehicles?.results)
@@ -49,7 +49,7 @@ const Home = () => {
             ? <ControlsContainer list={planets} handleChange={handlePlanetUrl}/>
             : null
             }
-            <h1>Planetas</h1>
+            <h1>Planets</h1>
           </div> 
           <div className="homeCardContainer">
             { Boolean(planets?.results)
